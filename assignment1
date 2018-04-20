@@ -1,0 +1,36 @@
+
+#1.Subset operation
+d=read.csv2("dataset_Facebook1.csv")
+sub<-d[c("comment","like","share")]
+head(sub)
+write.csv(sub,"Facebook_sub.csv")	#create new file for subset
+subset1=subset(sub,comment>50)
+head(subset1)
+
+#2.Merge operation
+dataA=read.csv2("dataset_Facebook1.csv")
+dataB=read.csv2("dataset_Facebook2.csv")
+dim(dataA)
+dim(dataB)
+newAB=rbind(dataA,dataB)	#merge two subset A and B
+dim(newAB)
+
+#3.Sort operation
+x=sub[order(-d$share),]
+head(x)
+x1=sub[order(-d$comment),]
+head(x1)
+
+#4.Transposing dataA
+Transpose=t(sub)
+head(Transpose)
+
+#5.Melting data to long formate
+melt(data=sub,id.vars="comment")
+
+#6.Casting data to long formate
+sub=d[c('Post.Month','Post.Hour','Paid')]
+head(sub)
+cast(sub,Post.Hour ~ Post.Month,mean,value='Paid')
+
+
